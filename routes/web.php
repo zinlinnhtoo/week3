@@ -11,6 +11,11 @@
 |
 */
 
-Route::get('/','ReceipeController@index');
-Route::get('php', 'HomeController@phppage');
-Route::get('js', 'HomeController@jspage');
+Route::resource('receipe', 'ReceipeController');
+
+//Route::get('receipe', 'ReceipeController@index');
+//Route::post('receipe', 'ReceipeController@create');
+//Route::get('create_receipe', 'ReceipeController@createReceipeForm');
+
+//Route::get('php', 'HomeController@phppage');
+//Route::get('js', 'HomeController@jspage');
