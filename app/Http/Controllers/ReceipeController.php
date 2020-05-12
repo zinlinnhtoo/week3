@@ -34,15 +34,31 @@ class ReceipeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $receipe = new Receipe();
+    public function store()
+    { 
+        $validatedData = request()->validate([
+            'name' => 'required',
+            'ingredients' => 'required',
+            'category' => 'required',
+        ]);
 
-        $receipe->name = $request->name;
-        $receipe->ingredients = $request->ingredients;
-        $receipe->category = $request->category;
+      /*$receipe = new Receipe();
 
-        $receipe->save();
+        $receipe->name = request()->name;
+        $receipe->ingredients = request()->ingredients;
+        $receipe->category = request()->category;
+
+        $receipe->save(); */
+
+    //Use for fillable in Model
+        Receipe::create($validatedData);
+
+      //Use for guraded in Model
+     /* Receipe::create([
+            'name' => request()->name,
+            'ingredients' => request()->ingredients,
+            'category' => request()->category
+        ]); */
 
         return redirect('receipe');
     }
@@ -76,14 +92,15 @@ class ReceipeController extends Controller
      * @param  \App\Receipe  $receipe
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Receipe $receipe)
+    public function update(Receipe $receipe)
     {
-        $receipe = Receipe::find($receipe->id);
-        $receipe->name = $request->name;
-        $receipe->ingredients = $request->ingredients;
-        $receipe->category = $request->category;
+        $validatedData = request()->validate([
+            'name' => 'required',
+            'ingredients' => 'required',
+            'category' => 'required',
+        ]);
 
-        $receipe->save();
+        $receipe->update($validatedData);
 
         return redirect('receipe');
     }
