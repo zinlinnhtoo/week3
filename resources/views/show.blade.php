@@ -8,7 +8,7 @@
     <div class="container">
         <h2>{{ $receipe->name }}</h2>
         <li>Ingredients - {{ $receipe->ingredients }}</li>
-        <li>Category - {{ $receipe->category }}</li>
+        <li>Category - {{ $receipe->categories->name }}</li>
         <a href="{{$receipe->id}}/edit"><button class="btn btn-primary">Edit</button></a>
         <form method="POST" action="/receipe/{{$receipe->id}}">
             {{method_field("DELETE")}}

@@ -32,8 +32,11 @@
             </div>
 
             <div class="form-group">
-                <label>Category</label>
-                <input type="text" name="category" class="form-control" value="{{ old('category') }}">
+                <select name="category" class="form-control">
+                    @foreach($category as $value)
+                        <option value="{{ $value->id }}">{{ $value->name }}</option>
+                    @endforeach
+                </select>
             </div>
 
             <input type="submit" class="btn btn-primary">
