@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\test;
 use App\Receipe;
 use App\Category;
 use Illuminate\Http\Request;
@@ -21,6 +22,8 @@ class ReceipeController extends Controller
 
     public function index()
     {
+
+
         $data = Receipe::where('author_id', auth()->id())->get();
         return view('home', compact('data'));
     }
@@ -69,6 +72,8 @@ class ReceipeController extends Controller
             'category' => request()->category
         ]); */
 
+        session()->flash("message", 'Receipe has created successfully!');
+
         return redirect('receipe');
     }
 
@@ -78,7 +83,7 @@ class ReceipeController extends Controller
      * @param  \App\Receipe  $receipe
      * @return \Illuminate\Http\Response
      */
-    public function show(Receipe $receipe)
+    public function show(Receipe $receipe, test $test)
     {
         // if ($receipe->author_id != auth()->id()) {
         //     abort(403);
